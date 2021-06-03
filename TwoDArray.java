@@ -1,79 +1,57 @@
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class TwoDArray {
+
+public class TwoDArray{
+	private static Scanner scanner = new Scanner(System.in);
+	int mArray[][];
+	int m,n;
 	
-	static PrintWriter printwriter = new PrintWriter(System.out);
-	public static void main(String[] args) {
-     Scanner scan =  new Scanner(System.in);
-     System.out.println("Enter Number  m rows");
-     int M = scan.nextInt();
-     System.out.println("Enter Number of n coloums");
-     int N = scan.nextInt();
-     int arr[][]  = new int[M][N];
-     boolean ar[][]  = new boolean[M][N];
-     double arrr[][]  = new double[M][N];
-     for(int i = 0 ; i<M ; i++) {
-    	 for(int j = 0 ; j<N ; j++) {
-    		 arr[i][j] = scan.nextInt();
-    	 }
-     }
-     
-     TwoDArray.PrintArr(arr);
-     System.out.println(" Enter boolean Array");
-     
-     for(int i = 0 ; i<M ; i++) {
-    	 for(int j = 0 ; j<N ; j++) {
-    		 ar[i][j] = scan.nextBoolean();
-    	 }
-     }
-     TwoDArray.PrintArr(ar);
-     System.out.println(" Enter double Array");
-     
-     for(int i = 0 ; i<M ; i++) {
-    	 for(int j = 0 ; j<N ; j++) {
-    		 arrr[i][j] = scan.nextDouble();
-    	 }
-     }
-     TwoDArray.PrintArr(arrr);
-scan.close();
+	// constructor of 2-D array with arguments
+	public TwoDArray(int m,int n){
+		mArray=new int[m][n];
+		this.m=m;	
+		this.n=n;
+		
+	}
+		// Taking number of rows and columns from user..
+	public static void main(String args[]){
+		
+		System.out.println("Enter number of Column:");
+		int n=scanner.nextInt();
+
+		System.out.println("Enter number of Row:");
+		int m=scanner.nextInt();
+		TwoDArray twoDArray=new TwoDArray(m,n);
+		twoDArray.takeArrayInput();
+		System.out.println("2D Array is");
+		twoDArray.printArray();
 	}
 	
-	public static void PrintArr(int a[][]) {
-		for (int b[] : a) {
-			for (int c : b) {
-
-				 printwriter.print(c + " ");
-				 printwriter.flush();
+	//Take 2D Array as Input
+	public void takeArrayInput(){
+		for(int row=0;row<m;row++){
+			for(int col=0;col<n;col++){
+				System.out.print("Array["+row+"] ["+col+"] :");
+				mArray[row][col]=scanner.nextInt();
+				System.out.println();
 			}
-			System.out.println();
 		}
 	}
-	
-	public static void PrintArr(double a[][]) {
-		for (double b[] : a) {
-			for (double c : b) {
-				 printwriter.print(c + " ");
-				 printwriter.flush();
+		// functions to print 2-D array..
+	public void printArray(){
+		PrintWriter mPrintWriter=new PrintWriter(System.out,true);
+    	
+		for(int row=0;row<m;row++){
+		
+			for(int col=0;col<n;col++){
+				mPrintWriter.print(" "+mArray[row][col]);
 			}
-			System.out.println();
-		}
-	}
-
-	public static void PrintArr(boolean a[][]) {
-		for (boolean b[] : a) {
-			for (boolean c : b) {
-				if (c == true) {
-					 printwriter.print("1 ");
-					 printwriter.flush();
-				} else {
-					 printwriter.print("0 ");
-					 printwriter.flush();
-				}
-			}
-			System.out.println();
+			mPrintWriter.println();
 		}
 	}
 }
+
+
 
 
